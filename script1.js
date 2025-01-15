@@ -12,16 +12,31 @@ balls.forEach(ball => {
 
 containers.forEach(container => {
     container.addEventListener('click', () =>{
-        container.appendChild(selectedBall)
-        console.log(container.lastChild)
+        
+        if(selectedBall == null){
+            selectedBall =container.lastChild
+        }
+        else if(container.children.length === 4){
+            alert('MAX BALL ADDED :: select another container to add more balls')
+        }else{
+            container.appendChild(selectedBall)
+            selectedBall = null
+        }
     })
 })
+
 stash.addEventListener('click',() => {
     stash.appendChild(selectedBall)
+    // selectedBall = ''
 })
+
+if(stash.children.length == 1){
+    stash.style.display = 'none'
+}
 
 const start = document.querySelector('.start-title')
 const container = document.querySelector('.containers')
+
 
 document.addEventListener('click', () => {
     start.style.display = 'none'
